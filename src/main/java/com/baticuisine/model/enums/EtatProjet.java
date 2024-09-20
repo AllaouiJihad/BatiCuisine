@@ -1,4 +1,7 @@
 package main.java.com.baticuisine.model.enums;
 
-public class EtatProjet {
+public enum EtatProjet {
+    ENCOURS,
+    TERMINE,
+    ANNULE
 }
