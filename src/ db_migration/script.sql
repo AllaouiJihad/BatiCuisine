@@ -1,13 +1,36 @@
- --Create the base Composant table
-CREATE TABLE Composant (
+
+-- Create the Client table
+CREATE TABLE clients (
+                         id SERIAL PRIMARY KEY,
+                         nom VARCHAR(255) NOT NULL,
+                         adresse TEXT NOT NULL,
+                         telephone VARCHAR(20) NOT NULL,
+                         est_professionnel BOOLEAN NOT NULL
+);
+-- Create the Projet table
+CREATE TYPE etatProjet AS ENUM ('ENCOURS', 'TERMINE', 'ANNULE');
+CREATE TABLE projets (
+                         id SERIAL PRIMARY KEY,
+                         nom_projet VARCHAR(255) NOT NULL,
+                         marge_beneficiaire DECIMAL(5,2) NOT NULL,
+                         cout_total DECIMAL(12,2) NOT NULL,
+                         etat_projet etatProjet,
+                         client_id INTEGER,
+                         FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE,
+);
+--Create the base Composant table
+CREATE TABLE composants (
                            id SERIAL PRIMARY KEY,
                            nom VARCHAR(255) NOT NULL,
                            type_composant VARCHAR(50) NOT NULL,
-                           taux_tva DECIMAL(5,2) NOT NULL
+                           taux_tva DECIMAL(5,2) NOT NULL,
+                           projet_id INTEGER,
+                           FOREIGN KEY (projet_id) REFERENCES projets(id) ON DELETE CASCADE,
+
 );
 
 -- Create the Materiau table inheriting from Composant
-CREATE TABLE Materiau (
+CREATE TABLE materiaux (
                           cout_unitaire DECIMAL(10,2) NOT NULL,
                           quantite DECIMAL(10,2) NOT NULL,
                           cout_transport DECIMAL(10,2) NOT NULL,
@@ -15,33 +38,17 @@ CREATE TABLE Materiau (
 ) INHERITS (Composant);
 
 -- Create the MainOeuvre table inheriting from Composant
-CREATE TABLE MainOeuvre (
+CREATE TABLE mainOeuvres (
                             taux_horaire DECIMAL(10,2) NOT NULL,
                             heures_travail DECIMAL(10,2) NOT NULL,
                             productivite_ouvrier DECIMAL(3,2) NOT NULL
 ) INHERITS (Composant);
 
--- Create the Client table
-CREATE TABLE Client (
-                        id SERIAL PRIMARY KEY,
-                        nom VARCHAR(255) NOT NULL,
-                        adresse TEXT NOT NULL,
-                        telephone VARCHAR(20) NOT NULL,
-                        est_professionnel BOOLEAN NOT NULL
-);
 
--- Create the Projet table
-CREATE TABLE Projet (
-                        id SERIAL PRIMARY KEY,
-                        nom_projet VARCHAR(255) NOT NULL,
-                        marge_beneficiaire DECIMAL(5,2) NOT NULL,
-                        cout_total DECIMAL(12,2) NOT NULL,
-                        etat_projet VARCHAR(20) NOT NULL,
-                        client_id INTEGER REFERENCES Client(id)
-);
+
 
 -- Create the Devis table
-CREATE TABLE Devis (
+CREATE TABLE devis (
                        id SERIAL PRIMARY KEY,
                        montant_estime DECIMAL(12,2) NOT NULL,
                        date_emission DATE NOT NULL,
