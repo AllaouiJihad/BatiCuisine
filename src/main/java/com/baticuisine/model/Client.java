@@ -54,4 +54,15 @@ public class Client {
     public void setIs_professional(boolean is_professional) {
         this.is_professional = is_professional;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", is_professional=" + is_professional +
+                '}';
+    }
 }
