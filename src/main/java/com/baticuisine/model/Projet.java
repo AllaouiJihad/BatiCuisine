@@ -90,4 +90,18 @@ public class Projet {
     public void setDevis(Devis devis) {
         this.devis = devis;
     }
+
+    @Override
+    public String toString() {
+        return "Projet{" +
+                "id=" + id +
+                ", nomProjet='" + nomProjet + '\'' +
+                ", margeBeneficiaire=" + margeBeneficiaire +
+                ", coutTotal=" + coutTotal +
+                ", etatProjet=" + etatProjet +
+                ", client=" + client +
+                ", composants=" + composants +
+                ", devis=" + devis +
+                '}';
+    }
 }
