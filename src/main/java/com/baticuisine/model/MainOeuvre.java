@@ -2,12 +2,13 @@ package main.java.com.baticuisine.model;
 
 import java.math.BigDecimal;
 
-public class MainOeuvre {
+public class MainOeuvre extends Composants{
     private BigDecimal tauxHoraire;
     private BigDecimal heuresTravail;
     private BigDecimal productiviteOuvrier;
 
-    public MainOeuvre(BigDecimal tauxHoraire, BigDecimal heuresTravail, BigDecimal productiviteOuvrier) {
+    public MainOeuvre(Long id, String nom, String typeComposant, BigDecimal tauxTva, Projet projet, BigDecimal tauxHoraire, BigDecimal heuresTravail, BigDecimal productiviteOuvrier) {
+        super(id, nom, typeComposant, tauxTva, projet);
         this.tauxHoraire = tauxHoraire;
         this.heuresTravail = heuresTravail;
         this.productiviteOuvrier = productiviteOuvrier;
