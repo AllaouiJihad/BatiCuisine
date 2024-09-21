@@ -22,7 +22,7 @@ public class ClientRepositoryImpl implements ClientRepository {
         try (PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, client.getName());
-            pstmt.setString(2, client.getName());
+            pstmt.setString(2, client.getTelephone());
             pstmt.setString(3, client.getAdresse());
             pstmt.setBoolean(4, client.is_professional());
 
@@ -72,7 +72,7 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public Optional<Client> findByName(String name) throws SQLException {
-        String query = "SELECT * FROM clients WHERE name = ?";
+        String query = "SELECT * FROM clients WHERE nom = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
 
             preparedStatement.setString(1, name);
@@ -80,10 +80,10 @@ public class ClientRepositoryImpl implements ClientRepository {
                 if (resultSet.next()) {
 
                     Client client =new Client(
-                            resultSet.getString("name"),
-                            resultSet.getString("phone"),
-                            resultSet.getString("address"),
-                            resultSet.getBoolean("isProfessional")
+                            resultSet.getString("nom"),
+                            resultSet.getString("telephone"),
+                            resultSet.getString("adresse"),
+                            resultSet.getBoolean("est_professionnel")
                     );
                     client.setId(resultSet.getInt("id"));
                     return Optional.of(client);

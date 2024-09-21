@@ -39,7 +39,7 @@ public class Menu {
         return scan.nextInt();
     }
     public static void displayClientInfo(Client client) {
-        System.out.println("Client trouvé !");
+        System.out.println("Client  !");
         System.out.println("Nom : " + client.getName());
         System.out.println("Adresse : " + client.getAdresse());
         System.out.println("Numéro de téléphone : " + client.getTelephone());

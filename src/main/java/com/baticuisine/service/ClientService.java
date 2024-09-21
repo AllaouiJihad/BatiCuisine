@@ -20,26 +20,10 @@ public class ClientService {
         return clientRepository.clienExist(name);
     }
     public Client addClient(String name, String phone, String address, boolean isProfessional) throws SQLException {
-        System.out.println("Début de la méthode addClient");
 
-        // Vérification des paramètres
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Le nom du client ne peut pas être vide");
-        }
-        if (phone == null || phone.trim().isEmpty()) {
-            throw new IllegalArgumentException("Le numéro de téléphone du client ne peut pas être vide");
-        }
-        if (address == null || address.trim().isEmpty()) {
-            throw new IllegalArgumentException("L'adresse du client ne peut pas être vide");
-        }
-
-        System.out.println("Création d'un nouvel objet Client");
         Client nouvClient = new Client(name, phone, address, isProfessional);
-        System.out.println(nouvClient);
-        System.out.println("Appel de la méthode addClient du repository");
         try {
             Client addedClient = clientRepository.addClient(nouvClient);
-            System.out.println("Client ajouté avec succès");
             return addedClient;
         } catch (SQLException e) {
             System.out.println("Erreur SQL lors de l'ajout du client : " + e.getMessage());
