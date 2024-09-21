@@ -11,7 +11,7 @@ public class DatabaseConnection {
     private DatabaseConnection() {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Bati-Cuisine", "GreenPulse", "");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BatiCuisine", "GreenPulse", "");
 
 
         } catch (Exception e) {
