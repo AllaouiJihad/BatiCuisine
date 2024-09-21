@@ -7,8 +7,7 @@ public class Client {
     private String telephone;
     private boolean is_professional;
 
-    public Client(int id, String name, String adresse, String telephone, boolean is_professional) {
-        this.id = id;
+    public Client(String name, String adresse, String telephone, boolean is_professional) {
         this.name = name;
         this.adresse = adresse;
         this.telephone = telephone;
@@ -47,7 +46,7 @@ public class Client {
         this.telephone = telephone;
     }
 
-    public boolean isIs_professional() {
+    public boolean is_professional() {
         return is_professional;
     }
 
