@@ -7,31 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Projet {
-    private Long id;
+    private int id;
     private String nomProjet;
-    private BigDecimal margeBeneficiaire;
-    private BigDecimal coutTotal;
+    private Double margeBeneficiaire;
+    private Double coutTotal;
     private EtatProjet etatProjet;
     private Client client;
     private List<Composants> composants = new ArrayList<>();
     private Devis devis;
 
-    public Projet(Long id, String nomProjet, BigDecimal margeBeneficiaire, BigDecimal coutTotal, EtatProjet etatProjet, Client client, List<Composants> composants, Devis devis) {
-        this.id = id;
+    public Projet( String nomProjet, Double margeBeneficiaire, Double coutTotal, EtatProjet etatProjet) {
         this.nomProjet = nomProjet;
         this.margeBeneficiaire = margeBeneficiaire;
         this.coutTotal = coutTotal;
         this.etatProjet = etatProjet;
-        this.client = client;
-        this.composants = composants;
-        this.devis = devis;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,19 +39,19 @@ public class Projet {
         this.nomProjet = nomProjet;
     }
 
-    public BigDecimal getMargeBeneficiaire() {
+    public Double getMargeBeneficiaire() {
         return margeBeneficiaire;
     }
 
-    public void setMargeBeneficiaire(BigDecimal margeBeneficiaire) {
+    public void setMargeBeneficiaire(Double margeBeneficiaire) {
         this.margeBeneficiaire = margeBeneficiaire;
     }
 
-    public BigDecimal getCoutTotal() {
+    public Double getCoutTotal() {
         return coutTotal;
     }
 
-    public void setCoutTotal(BigDecimal coutTotal) {
+    public void setCoutTotal(Double coutTotal) {
         this.coutTotal = coutTotal;
     }
 
