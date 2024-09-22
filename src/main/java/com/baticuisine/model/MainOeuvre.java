@@ -3,38 +3,38 @@ package main.java.com.baticuisine.model;
 import java.math.BigDecimal;
 
 public class MainOeuvre extends Composants{
-    private BigDecimal tauxHoraire;
-    private BigDecimal heuresTravail;
-    private BigDecimal productiviteOuvrier;
+    private Double tauxHoraire;
+    private Double heuresTravail;
+    private Double productiviteOuvrier;
 
-    public MainOeuvre(Long id, String nom, String typeComposant, BigDecimal tauxTva, Projet projet, BigDecimal tauxHoraire, BigDecimal heuresTravail, BigDecimal productiviteOuvrier) {
-        super(id, nom, typeComposant, tauxTva, projet);
+    public MainOeuvre(String nom, String typeComposant, Double tauxTva, Projet projet, Double tauxHoraire, Double heuresTravail, Double productiviteOuvrier) {
+        super( nom, typeComposant, tauxTva, projet);
         this.tauxHoraire = tauxHoraire;
         this.heuresTravail = heuresTravail;
         this.productiviteOuvrier = productiviteOuvrier;
     }
 
-    public BigDecimal getTauxHoraire() {
+    public Double getTauxHoraire() {
         return tauxHoraire;
     }
 
-    public void setTauxHoraire(BigDecimal tauxHoraire) {
+    public void setTauxHoraire(Double tauxHoraire) {
         this.tauxHoraire = tauxHoraire;
     }
 
-    public BigDecimal getHeuresTravail() {
+    public Double getHeuresTravail() {
         return heuresTravail;
     }
 
-    public void setHeuresTravail(BigDecimal heuresTravail) {
+    public void setHeuresTravail(Double heuresTravail) {
         this.heuresTravail = heuresTravail;
     }
 
-    public BigDecimal getProductiviteOuvrier() {
+    public Double getProductiviteOuvrier() {
         return productiviteOuvrier;
     }
 
-    public void setProductiviteOuvrier(BigDecimal productiviteOuvrier) {
+    public void setProductiviteOuvrier(Double productiviteOuvrier) {
         this.productiviteOuvrier = productiviteOuvrier;
     }
 

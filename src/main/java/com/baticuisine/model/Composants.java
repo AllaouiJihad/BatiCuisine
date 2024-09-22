@@ -3,25 +3,24 @@ package main.java.com.baticuisine.model;
 import java.math.BigDecimal;
 
 public class Composants {
-    private Long id;
+    private int id;
     private String nom;
     private String typeComposant;
-    private BigDecimal tauxTva;
+    private Double tauxTva;
     private Projet projet;
 
-    public Composants(Long id, String nom, String typeComposant, BigDecimal tauxTva, Projet projet) {
-        this.id = id;
+    public Composants(String nom, String typeComposant, Double tauxTva, Projet projet) {
         this.nom = nom;
         this.typeComposant = typeComposant;
         this.tauxTva = tauxTva;
         this.projet = projet;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,11 +40,11 @@ public class Composants {
         this.typeComposant = typeComposant;
     }
 
-    public BigDecimal getTauxTva() {
+    public Double getTauxTva() {
         return tauxTva;
     }
 
-    public void setTauxTva(BigDecimal tauxTva) {
+    public void setTauxTva(Double tauxTva) {
         this.tauxTva = tauxTva;
     }
 

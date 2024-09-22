@@ -23,6 +23,10 @@ public class Projet {
         this.etatProjet = etatProjet;
     }
 
+    public Projet(String nomProjet) {
+        this.nomProjet = nomProjet;
+    }
+
     public int getId() {
         return id;
     }

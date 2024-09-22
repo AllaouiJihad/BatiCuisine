@@ -3,48 +3,48 @@ package main.java.com.baticuisine.model;
 import java.math.BigDecimal;
 
 public class Materiau  extends Composants{
-    private BigDecimal coutUnitaire;
-    private BigDecimal quantite;
-    private BigDecimal coutTransport;
-    private BigDecimal coefficientQualite;
+    private Double coutUnitaire;
+    private Double quantite;
+    private Double coutTransport;
+    private Double coefficientQualite;
 
-    public Materiau(Long id, String nom, String typeComposant, BigDecimal tauxTva, Projet projet, BigDecimal coutUnitaire, BigDecimal quantite, BigDecimal coutTransport, BigDecimal coefficientQualite) {
-        super(id, nom, typeComposant, tauxTva, projet);
+    public Materiau(String nom, String typeComposant, Double tauxTva, Projet projet, Double coutUnitaire, Double quantite, Double coutTransport, Double coefficientQualite) {
+        super(nom, typeComposant, tauxTva, projet);
         this.coutUnitaire = coutUnitaire;
         this.quantite = quantite;
         this.coutTransport = coutTransport;
         this.coefficientQualite = coefficientQualite;
     }
 
-    public BigDecimal getCoutUnitaire() {
+    public Double getCoutUnitaire() {
         return coutUnitaire;
     }
 
-    public void setCoutUnitaire(BigDecimal coutUnitaire) {
+    public void setCoutUnitaire(Double coutUnitaire) {
         this.coutUnitaire = coutUnitaire;
     }
 
-    public BigDecimal getQuantite() {
+    public Double getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(BigDecimal quantite) {
+    public void setQuantite(Double quantite) {
         this.quantite = quantite;
     }
 
-    public BigDecimal getCoutTransport() {
+    public Double getCoutTransport() {
         return coutTransport;
     }
 
-    public void setCoutTransport(BigDecimal coutTransport) {
+    public void setCoutTransport(Double coutTransport) {
         this.coutTransport = coutTransport;
     }
 
-    public BigDecimal getCoefficientQualite() {
+    public Double getCoefficientQualite() {
         return coefficientQualite;
     }
 
-    public void setCoefficientQualite(BigDecimal coefficientQualite) {
+    public void setCoefficientQualite(Double coefficientQualite) {
         this.coefficientQualite = coefficientQualite;
     }
 
