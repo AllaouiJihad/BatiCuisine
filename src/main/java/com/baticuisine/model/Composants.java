@@ -9,11 +9,10 @@ public class Composants {
     private Double tauxTva;
     private Projet projet;
 
-    public Composants(String nom, String typeComposant, Double tauxTva, Projet projet) {
+    public Composants(String nom, String typeComposant, Double tauxTva) {
         this.nom = nom;
         this.typeComposant = typeComposant;
         this.tauxTva = tauxTva;
-        this.projet = projet;
     }
 
     public int getId() {

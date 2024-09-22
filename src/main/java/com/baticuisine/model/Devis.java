@@ -4,35 +4,33 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Devis {
-    private Long id;
-    private BigDecimal montantEstime;
+    private int id;
+    private Double montantEstime;
     private LocalDate dateEmission;
     private LocalDate dateValidite;
     private boolean accepte;
     private Projet projet;
 
-    public Devis(Long id, BigDecimal montantEstime, LocalDate dateEmission, LocalDate dateValidite, boolean accepte, Projet projet) {
-        this.id = id;
+    public Devis( Double montantEstime, LocalDate dateEmission, LocalDate dateValidite, boolean accepte) {
         this.montantEstime = montantEstime;
         this.dateEmission = dateEmission;
         this.dateValidite = dateValidite;
         this.accepte = accepte;
-        this.projet = projet;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public BigDecimal getMontantEstime() {
+    public Double getMontantEstime() {
         return montantEstime;
     }
 
-    public void setMontantEstime(BigDecimal montantEstime) {
+    public void setMontantEstime(Double montantEstime) {
         this.montantEstime = montantEstime;
     }
 

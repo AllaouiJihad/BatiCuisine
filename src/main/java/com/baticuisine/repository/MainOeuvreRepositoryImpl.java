@@ -108,19 +108,19 @@ public class MainOeuvreRepositoryImpl implements Repository<MainOeuvre> {
     }
 
     private MainOeuvre extractMainOeuvreFromResultSet(ResultSet rs) throws SQLException {
-        Projet projet = new Projet(rs.getString("projet_nom"));
-        projet.setId(rs.getInt("projet_id"));
+
+        Optional<Projet> projet = new ProjetRepositoryImpl(connection).findById(rs.getInt("projet_id"));
 
         MainOeuvre mainOeuvre = new MainOeuvre(
                 rs.getString("nom"),
                 rs.getString("typeComposant"),
                 rs.getDouble("tauxTva"),
-                projet,
                 rs.getDouble("tauxHoraire"),
                 rs.getDouble("heuresTravail"),
                 rs.getDouble("productiviteOuvrier")
         );
         mainOeuvre.setId(rs.getInt("id"));
+        mainOeuvre.setProjet(projet.orElse(null));
         return mainOeuvre;
     }
 }

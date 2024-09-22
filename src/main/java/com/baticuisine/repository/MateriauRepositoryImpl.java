@@ -114,7 +114,6 @@ public class MateriauRepositoryImpl implements Repository<Materiau> {
                 rs.getString("nom"),
                 rs.getString("typeComposant"),
                 rs.getDouble("tauxTva"),
-                projet,
                 rs.getDouble("coutUnitaire"),
                 rs.getDouble("quantite"),
                 rs.getDouble("coutTransport"),
