@@ -41,7 +41,7 @@ public class ProjetRepositoryImpl implements ProjetRepository {
     @Override
     public List<Projet> findAll() throws SQLException {
         List<Projet> projets = new ArrayList<>();
-        String sql = "SELECT * FROM project";
+        String sql = "SELECT * FROM projets";
         try (Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {

@@ -37,17 +37,20 @@ public class ClientService {
     public List<Client> findAllClients() throws SQLException {
         return clientRepository.findAll();
     }
-    public Client updateClient(String originalName, String name, String phone, String address, boolean isProfessional) throws SQLException {
-        Client client = new Client(name, phone, address, isProfessional);
+    public Client updateClient(Client client) throws SQLException {
         return clientRepository.updateClient(client);
     }
 
-    public boolean deleteClient(String name) throws SQLException {
-        return clientRepository.deleteClient(name);
+    public boolean deleteClient(int id) throws SQLException {
+        return clientRepository.deleteClient(id);
     }
 
     public Optional<Client> findByname(String name) throws SQLException {
         return clientRepository.findByName(name);
+    }
+
+    public Optional<Client> findById(int id) throws SQLException {
+        return clientRepository.findByID(id);
     }
 
 }

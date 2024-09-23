@@ -60,7 +60,7 @@ public class ClientRepositoryImpl implements ClientRepository {
                         resultSet.getString("nom"),
                         resultSet.getString("telephone"),
                         resultSet.getString("adresse"),
-                        resultSet.getBoolean("est_professional")
+                        resultSet.getBoolean("est_professionnel")
                 );
 
                 client.setId(resultSet.getInt("id"));
@@ -76,6 +76,33 @@ public class ClientRepositoryImpl implements ClientRepository {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
 
             preparedStatement.setString(1, name);
+            try (ResultSet resultSet= preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+
+                    Client client =new Client(
+                            resultSet.getString("nom"),
+                            resultSet.getString("adresse"),
+                            resultSet.getString("telephone"),
+                            resultSet.getBoolean("est_professionnel")
+                    );
+                    client.setId(resultSet.getInt("id"));
+                    return Optional.of(client);
+                } else {
+                    return Optional.empty();
+                }
+            }
+
+
+
+        }
+    }
+
+    @Override
+    public Optional<Client> findByID(int id) throws SQLException {
+        String query = "SELECT * FROM clients WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+            preparedStatement.setInt(1, id);
             try (ResultSet resultSet= preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
 
@@ -127,13 +154,13 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public Client updateClient(Client client) throws SQLException {
-        String query = "UPDATE clients SET nom = ?, telephone = ?, adresse = ?, est_professional = ? WHERE nom = ?";
+        String query = "UPDATE clients SET nom = ?, telephone = ?, adresse = ?, est_professionnel = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, client.getName());
-            statement.setString(2, client.getAdresse());
-            statement.setString(3, client.getTelephone());
+            statement.setString(2, client.getTelephone());
+            statement.setString(3, client.getAdresse());
             statement.setBoolean(4, client.is_professional());
-            statement.setLong(5, client.getId());
+            statement.setInt(5, client.getId());
             statement.executeUpdate();
             return client;
         } catch (SQLException e) {
@@ -143,11 +170,11 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public boolean deleteClient(String name) throws SQLException {
-        String query = "DELETE FROM clients WHERE nom =?";
+    public boolean deleteClient(int id) throws SQLException {
+        String query = "DELETE FROM clients WHERE id =?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setString(1, name);
+            preparedStatement.setInt(1, id);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;

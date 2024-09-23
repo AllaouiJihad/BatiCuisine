@@ -10,8 +10,9 @@ public interface ClientRepository {
     Client addClient(Client client) throws SQLException;
     List<Client> findAll() throws SQLException;
     Optional<Client> findByName(String name) throws SQLException;
+    Optional<Client> findByID(int id) throws SQLException;
     Client updateClient(Client client) throws SQLException;
-    boolean deleteClient(String name) throws SQLException;
+    boolean deleteClient(int id) throws SQLException;
     boolean clienExist(String name) throws SQLException;
     Optional<Client> findById(int id) throws SQLException;
 }
