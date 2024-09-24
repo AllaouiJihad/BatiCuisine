@@ -1,17 +1,21 @@
 package main.java.com.baticuisine.ui;
 
+import main.java.com.baticuisine.model.Composants;
 import main.java.com.baticuisine.model.MainOeuvre;
 import main.java.com.baticuisine.model.Materiau;
 import main.java.com.baticuisine.model.Projet;
+import main.java.com.baticuisine.service.ComposantService;
 import main.java.com.baticuisine.service.MainOeuvreService;
 import main.java.com.baticuisine.service.MateriauService;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainOeuvreUi {
 
-    public static void addMateriauxToProject(Projet projet, Scanner scanner, MainOeuvreService mainOeuvreService) throws SQLException {
+    public static void addMateriauxToProject(Projet projet, Scanner scanner, MainOeuvreService mainOeuvreService, List<Composants> composants
+    ) throws SQLException {
         System.out.println("--- --- Ajout de la main-d'œuvre --- ---");
         boolean addMore = true;
 
@@ -30,6 +34,7 @@ public class MainOeuvreUi {
 
 
             MainOeuvre mainOeuvre = mainOeuvreService.add(name,tauxHoraire,heuresTravail,productiviteOuvrier,projet);
+            composants.add(mainOeuvre);
             if (mainOeuvre != null) {
                 System.out.println("mainOeuvre ajouté avec succès !");
             } else {
@@ -40,7 +45,9 @@ public class MainOeuvreUi {
             addMore = scanner.nextLine().trim().equalsIgnoreCase("y");
         }
 
-        ComposantUi.calculCout(scanner);
+
+        projet.setComposants(composants);
+        ComposantUi.calculCout(scanner,projet,new ComposantService());
 
     }
 

@@ -1,11 +1,14 @@
 package main.java.com.baticuisine.ui;
 
+import main.java.com.baticuisine.model.Composants;
 import main.java.com.baticuisine.model.Materiau;
 import main.java.com.baticuisine.model.Projet;
 import main.java.com.baticuisine.service.MainOeuvreService;
 import main.java.com.baticuisine.service.MateriauService;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MateriauUi {
@@ -14,7 +17,7 @@ public class MateriauUi {
     public static void addMateriauxToProject(Projet projet, Scanner scanner, MateriauService materiauService) throws SQLException {
         System.out.println("--- Ajout des matériaux ---");
         boolean addMore = true;
-
+        List<Composants> composants=new ArrayList<>();
         while (addMore) {
             System.out.print("Entrez le nom du matériau : ");
             String name = scanner.nextLine();
@@ -32,7 +35,7 @@ public class MateriauUi {
             double qualityCoefficient = Double.parseDouble(scanner.nextLine());
 
             Materiau materiau = materiauService.add(name, unitCost, quantity, transportCost, qualityCoefficient,projet);
-
+            composants.add(materiau);
             if (materiau != null) {
                 System.out.println("Matériau ajouté avec succès !");
             } else {
@@ -43,7 +46,7 @@ public class MateriauUi {
             addMore = scanner.nextLine().trim().equalsIgnoreCase("y");
         }
 
-        MainOeuvreUi.addMateriauxToProject(projet,scanner,new MainOeuvreService());
+        MainOeuvreUi.addMateriauxToProject(projet,scanner,new MainOeuvreService(),composants);
 
     }
 

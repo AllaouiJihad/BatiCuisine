@@ -46,4 +46,11 @@ public class MainOeuvre extends Composants{
                 ", productiviteOuvrier=" + productiviteOuvrier +
                 '}';
     }
+    public double calculateCost(){
+        return getTauxHoraire() * getHeuresTravail() * getProductiviteOuvrier();
+    }
+    public double CostWTVA (){
+        double costWithoutTax = getTauxHoraire() * getHeuresTravail() * getProductiviteOuvrier();
+        return  costWithoutTax + (costWithoutTax * getTauxTva() / 100);
+    }
 }

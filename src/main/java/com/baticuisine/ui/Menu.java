@@ -44,12 +44,12 @@ public class Menu {
     }
     public static int clientMenu(Scanner scan) {
         System.out.println("╔═════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                       🔍 Recherche de client                    ║");
+        System.out.println("║                        Recherche de client                    ║");
         System.out.println("╚═════════════════════════════════════════════════════════════════╝");
 
         System.out.println("Souhaitez-vous :");
-        System.out.println("1. 🔎 Chercher un client existant");
-        System.out.println("2. ➕ Ajouter un nouveau client");
+        System.out.println("1.  Chercher un client existant");
+        System.out.println("2.  Ajouter un nouveau client");
 
         System.out.print("\nVeuillez choisir une option : ");
 

@@ -5,22 +5,31 @@ import main.java.com.baticuisine.model.Composants;
 import main.java.com.baticuisine.model.MainOeuvre;
 import main.java.com.baticuisine.model.Materiau;
 import main.java.com.baticuisine.model.Projet;
+import main.java.com.baticuisine.repository.ComposantRepositoryImpl;
 import main.java.com.baticuisine.repository.MainOeuvreRepositoryImpl;
 import main.java.com.baticuisine.repository.MateriauRepositoryImpl;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class ComposantService {
 
     private Connection connection = DatabaseConnection.getInstance().getConnection();
-
-    MainOeuvreRepositoryImpl mainOeuvreRepository;
-    MateriauRepositoryImpl materiauRepository;
-
+    ComposantRepositoryImpl composantRepository;
     public ComposantService() {
-        this.mainOeuvreRepository = new MainOeuvreRepositoryImpl(connection);
-        this.materiauRepository = new MateriauRepositoryImpl(connection);
+        this.composantRepository = new ComposantRepositoryImpl(connection);
     }
+
+    public boolean updateTva(int id, Double tauxTVA) throws SQLException {
+        return composantRepository.updateTva(id,tauxTVA);
+    }
+
+
+
+
+
+
+
 
 
 }
