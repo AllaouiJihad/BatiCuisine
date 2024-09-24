@@ -55,12 +55,12 @@ public class ProjetRepositoryImpl implements ProjetRepository {
 
     @Override
     public Projet updateProjet(Projet projet) throws SQLException {
-        String sql = "UPDATE project SET nom_projet = ?, marge_beneficiaire = ?, cout_total = ?, etat_projet = ?, client_id = ? WHERE id = ?";
+        String sql = "UPDATE projets SET nom_projet = ?, marge_beneficiaire = ?, cout_total = ?, etat_projet = ?::etatprojet, client_id = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, projet.getNomProjet());
             statement.setDouble(2, projet.getMargeBeneficiaire());
             statement.setDouble(3, projet.getCoutTotal());
-            statement.setString(4, projet.getEtatProjet().toString());
+            statement.setObject(4, projet.getEtatProjet().name());
             statement.setLong(5, projet.getClient().getId());
             statement.setLong(6, projet.getId());
             statement.executeUpdate();
@@ -73,7 +73,7 @@ public class ProjetRepositoryImpl implements ProjetRepository {
 
     @Override
     public boolean deleteProjet(int id) throws SQLException {
-        String sql = "DELETE FROM project WHERE id = ?";
+        String sql = "DELETE FROM projets WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
 

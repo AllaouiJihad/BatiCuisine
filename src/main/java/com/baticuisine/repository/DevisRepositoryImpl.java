@@ -41,8 +41,8 @@ public class DevisRepositoryImpl implements Repository<Devis> {
 
     private void duplicate(Devis devis, PreparedStatement pstmt) throws SQLException {
         pstmt.setDouble(1, devis.getMontantEstime());
-        pstmt.setDate(2, Date.valueOf(devis.getDateEmission()));
-        pstmt.setDate(3, Date.valueOf(devis.getDateValidite()));
+        pstmt.setDate(2, new java.sql.Date(devis.getDateEmission().getTime()));
+        pstmt.setDate(3, new java.sql.Date(devis.getDateValidite().getTime()));
         pstmt.setBoolean(4, devis.isAccepte());
         pstmt.setLong(5, devis.getProjet().getId());
     }
@@ -50,7 +50,7 @@ public class DevisRepositoryImpl implements Repository<Devis> {
     @Override
     public List<Devis> findAll() throws SQLException {
         List<Devis> devisList = new ArrayList<>();
-        String sql = "SELECT d.*, p.nom as projet_nom FROM devis d LEFT JOIN projet p ON d.projet_id = p.id";
+        String sql = "SELECT d.*, p.nom_projet as projet_nom FROM devis d LEFT JOIN projets p ON d.projet_id = p.id";
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -106,8 +106,8 @@ public class DevisRepositoryImpl implements Repository<Devis> {
 
         Devis devis = new Devis(
                 rs.getDouble("montant_estime"),
-                rs.getDate("date_emission").toLocalDate(),
-                rs.getDate("date_validite").toLocalDate(),
+                rs.getDate("date_emission"),
+                rs.getDate("date_validite"),
                 rs.getBoolean("accepte")
 
         );

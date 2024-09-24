@@ -1,15 +1,14 @@
 package main.java.com.baticuisine.ui;
 
-import main.java.com.baticuisine.model.Composants;
-import main.java.com.baticuisine.model.MainOeuvre;
-import main.java.com.baticuisine.model.Materiau;
-import main.java.com.baticuisine.model.Projet;
-import main.java.com.baticuisine.service.ComposantService;
-import main.java.com.baticuisine.service.MainOeuvreService;
-import main.java.com.baticuisine.service.MateriauService;
-import main.java.com.baticuisine.service.ProjetService;
+import main.java.com.baticuisine.model.*;
+import main.java.com.baticuisine.model.enums.EtatProjet;
+import main.java.com.baticuisine.service.*;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -100,7 +99,40 @@ public class ComposantUi {
 
         projet.setCoutTotal(coutTotalFinal);
 
+        System.out.println("--- Enregistrement du Devis ---");
 
+        /*System.out.println("Entrez la date d'émission du devis (format : jj/mm/aaaa) :");
+        LocalDate dateEmission = LocalDate.parse(scanner.nextLine());
+        System.out.println("Entrez la date de validité du devis (format : jj/mm/aaaa) :");
+        LocalDate dateValidite = LocalDate.parse(scanner.nextLine());*/
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Entrez la date d'émission du devis (format : jj/mm/aaaa) :");
+        String emission = scanner.nextLine();
+        LocalDate checkInDate = LocalDate.parse(emission, formatter);
+        Date dateEmission = Date.from(checkInDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        System.out.println("Entrez la date de validité du devis (format : jj/mm/aaaa) :");
+        String validity = scanner.nextLine();
+        LocalDate validityDate = LocalDate.parse(validity, formatter);
+        Date dateValidite = Date.from(validityDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+
+
+        System.out.println("Souhaitez-vous enregistrer le devis ? (y/n) : \n");
+        String validate = scanner.nextLine();
+        if (validate.equalsIgnoreCase("y")){
+            boolean accepte = true;
+            Devis devis = new DevisService().add(dateEmission, dateValidite,coutTotalFinal,accepte,projet);
+            System.out.println(devis);
+            projet.setEtatProjet(EtatProjet.TERMINE);
+            new ProjetService().update(projet);
+            System.out.println("Devis enregistré avec succès !\n" +
+                    "--- Fin du projet ---");
+        }
+        else {
+            projet.setEtatProjet(EtatProjet.ANNULE);
+            new ProjetService().update(projet);
+            System.out.println("--- Fin du projet ---");
+        }
 
     }
 }

@@ -2,16 +2,17 @@ package main.java.com.baticuisine.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Devis {
     private int id;
     private Double montantEstime;
-    private LocalDate dateEmission;
-    private LocalDate dateValidite;
+    private Date dateEmission;
+    private Date dateValidite;
     private boolean accepte;
     private Projet projet;
 
-    public Devis( Double montantEstime, LocalDate dateEmission, LocalDate dateValidite, boolean accepte) {
+    public Devis( Double montantEstime, Date dateEmission, Date dateValidite, boolean accepte) {
         this.montantEstime = montantEstime;
         this.dateEmission = dateEmission;
         this.dateValidite = dateValidite;
@@ -34,19 +35,19 @@ public class Devis {
         this.montantEstime = montantEstime;
     }
 
-    public LocalDate getDateEmission() {
+    public Date getDateEmission() {
         return dateEmission;
     }
 
-    public void setDateEmission(LocalDate dateEmission) {
+    public void setDateEmission(Date dateEmission) {
         this.dateEmission = dateEmission;
     }
 
-    public LocalDate getDateValidite() {
+    public Date getDateValidite() {
         return dateValidite;
     }
 
-    public void setDateValidite(LocalDate dateValidite) {
+    public void setDateValidite(Date dateValidite) {
         this.dateValidite = dateValidite;
     }
 
