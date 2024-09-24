@@ -2,6 +2,7 @@ package main.java.com.baticuisine;
 
 import main.java.com.baticuisine.model.Client;
 import main.java.com.baticuisine.service.ClientService;
+import main.java.com.baticuisine.service.MateriauService;
 import main.java.com.baticuisine.service.ProjetService;
 import main.java.com.baticuisine.ui.ClientUi;
 import main.java.com.baticuisine.ui.Menu;
@@ -34,6 +35,7 @@ public class Main {
                         ProjetUi.displayAllProjects(projetService);
                         break;
                     case 3:
+
                     case 6:
                         System.out.println("Calcul du coût d'un projet...");
                         // Ajoutez ici la logique pour calculer le coût d'un projet

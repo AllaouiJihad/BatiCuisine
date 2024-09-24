@@ -11,14 +11,17 @@ import java.util.Scanner;
 public class ClientUi {
     public static void handleClientMenu(Scanner scan, ClientService clientService) {
         while (true) {
-            System.out.println("\n--- Gestion des Clients ---");
-            System.out.println("1. Créer un nouveau client");
-            System.out.println("2. Afficher tous les clients");
-            System.out.println("3. Afficher un client par ID");
-            System.out.println("4. Mettre à jour un client");
-            System.out.println("5. Supprimer un client");
-            System.out.println("6. Retour au menu principal");
-            System.out.print("Choisissez une option : ");
+
+            System.out.println("╔═════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                        Gestion des Clients                      ║");
+            System.out.println("╚═════════════════════════════════════════════════════════════════╝");
+            System.out.println("1. ➤ Créer un nouveau client");
+            System.out.println("2. ➤ Afficher tous les clients");
+            System.out.println("3. ➤ Afficher un client par ID");
+            System.out.println("4. ➤ Mettre à jour un client");
+            System.out.println("5. ➤ Supprimer un client");
+            System.out.println("6. ➤ Retour au menu principal");
+            System.out.print(" \n Choisissez une option : ");
 
             int choice = Integer.parseInt(scan.nextLine());
 
@@ -51,7 +54,9 @@ public class ClientUi {
     }
 
     private static void createClient(Scanner scan, ClientService clientService) throws SQLException {
-        System.out.println("--- Création d'un nouveau client ---");
+        System.out.println("╔═════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                        Création d'un nouveau client             ║");
+        System.out.println("╚═════════════════════════════════════════════════════════════════╝");
         System.out.print("Nom : ");
         String name = scan.nextLine();
         System.out.print("Adresse : ");
@@ -70,7 +75,9 @@ public class ClientUi {
         if (clients.isEmpty()) {
             System.out.println("Aucun client trouvé.");
         } else {
-            System.out.println("--- Liste des clients ---");
+            System.out.println("╔═════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                       Liste des clients                         ║");
+            System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             for (Client client : clients) {
                 System.out.printf("ID: %d, Nom: %s, Téléphone: %s, Adresse : %s , Pro: %s %n",
                         client.getId(), client.getName(), client.getTelephone(),client.getAdresse(), client.is_professional() ? "Oui" : "Non");

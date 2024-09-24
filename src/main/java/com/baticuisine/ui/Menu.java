@@ -2,12 +2,15 @@ package main.java.com.baticuisine.ui;
 
 import main.java.com.baticuisine.model.Client;
 import main.java.com.baticuisine.service.ClientService;
+import main.java.com.baticuisine.service.ProjetService;
 
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class Menu {
+
+    ProjetService projetService =new ProjetService();
 
     public static int mainMenu(Scanner scan) {
         while (true) {
@@ -90,6 +93,9 @@ public class Menu {
             Menu.displayClientInfo(client.get());
             System.out.println("Souhaitez-vous continuer avec ce client ? (y/n)");
             String validate = scan.nextLine();
+            if (validate.equalsIgnoreCase("y")){
+                ProjetUi.addProjet(scan, new ProjetService(),client.get().getId());
+            }
             // Ajoutez ici la logique pour continuer avec le client
         } else {
             System.out.println("Client non trouvé !");

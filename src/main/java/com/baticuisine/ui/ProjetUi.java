@@ -1,6 +1,8 @@
 package main.java.com.baticuisine.ui;
 
+import main.java.com.baticuisine.model.Client;
 import main.java.com.baticuisine.model.Projet;
+import main.java.com.baticuisine.service.MateriauService;
 import main.java.com.baticuisine.service.ProjetService;
 
 import java.sql.SQLException;
@@ -110,6 +112,24 @@ public class ProjetUi {
         } catch (SQLException e) {
             System.out.println("Erreur lors de la suppression du projet : " + e.getMessage());
         }
+    }
+
+    public static void addProjet(Scanner scan , ProjetService projetService, int client_id) throws SQLException {
+        System.out.println("╔═════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                        Création d'un nouveau projet             ║");
+        System.out.println("╚═════════════════════════════════════════════════════════════════╝");
+        System.out.print("Nom de projet : ");
+        String name = scan.nextLine();
+        System.out.print("Marge beneficiaire : ");
+        Double marge_ben = Double.valueOf(scan.nextLine());
+
+        Projet newProjet = projetService.create(name,marge_ben,client_id);
+        System.out.println("Projet créé avec succès. \nID : " + newProjet.getId()+"\nNom de projet : "+ newProjet.getNomProjet());
+
+        MateriauUi.addMateriauxToProject(newProjet,scan, new MateriauService());
+
+
+
     }
 
 

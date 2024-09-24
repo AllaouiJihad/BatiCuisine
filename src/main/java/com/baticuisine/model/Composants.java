@@ -1,6 +1,7 @@
 package main.java.com.baticuisine.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Composants {
     private int id;
@@ -8,6 +9,7 @@ public class Composants {
     private String typeComposant;
     private Double tauxTva;
     private Projet projet;
+
 
     public Composants(String nom, String typeComposant, Double tauxTva) {
         this.nom = nom;
@@ -54,6 +56,7 @@ public class Composants {
     public void setProjet(Projet projet) {
         this.projet = projet;
     }
+
 
     @Override
     public String toString() {

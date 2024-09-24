@@ -19,14 +19,13 @@ public class ProjetRepositoryImpl implements ProjetRepository {
 
     @Override
     public Projet addProjet(Projet projet) throws SQLException {
-        String sql = "INSERT INTO projets (nom_projet, marge_beneficiaire, cout_total, etat_projet, client_id) VALUES (?, ?, ?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO projets (nom_projet, marge_beneficiaire, cout_total, etat_projet, client_id) VALUES (?, ?, ?, CAST(? AS etatprojet), ?) RETURNING id";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, projet.getNomProjet());
             statement.setDouble(2, projet.getMargeBeneficiaire());
             statement.setDouble(3, projet.getCoutTotal());
-            statement.setString(4, projet.getEtatProjet().toString()); // Assuming `etatProjet` is stored as a String
-            statement.setLong(5, projet.getClient().getId()); // Assuming `Client` has an `id` field
-
+            statement.setString(4, projet.getEtatProjet().name());
+            statement.setInt(5, projet.getClient().getId());
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 projet.setId(rs.getInt("id"));

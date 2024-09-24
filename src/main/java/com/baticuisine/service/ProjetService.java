@@ -2,8 +2,10 @@ package main.java.com.baticuisine.service;
 
 import main.java.com.baticuisine.config.DatabaseConnection;
 import main.java.com.baticuisine.model.Composants;
+import main.java.com.baticuisine.model.MainOeuvre;
 import main.java.com.baticuisine.model.Materiau;
 import main.java.com.baticuisine.model.Projet;
+import main.java.com.baticuisine.model.enums.EtatProjet;
 import main.java.com.baticuisine.repository.ClientRepositoryImpl;
 import main.java.com.baticuisine.repository.ProjetRepositoryImpl;
 
@@ -15,12 +17,17 @@ import java.util.Optional;
 public class ProjetService {
     private Connection connection = DatabaseConnection.getInstance().getConnection();
     private ProjetRepositoryImpl projetRepository ;
+    MateriauService materiauService=new MateriauService();
+    MainOeuvreService mainOeuvreService=new MainOeuvreService();
+    ClientService clientService = new ClientService();
 
     public ProjetService() {
         this.projetRepository = new ProjetRepositoryImpl(connection);
     }
 
-    public Projet create(Projet projet) throws SQLException {
+    public Projet create(String nom , Double marge, int clinet_id) throws SQLException {
+       Projet projet = new Projet(nom,marge,0.0, EtatProjet.ENCOURS);
+       projet.setClient(clientService.findById(clinet_id).get());
         return projetRepository.addProjet(projet);
     }
 
@@ -40,16 +47,16 @@ public class ProjetService {
         return projetRepository.deleteProjet(id);
     }
 
-    /*public double calculateTotalCost(Projet project) {
+    public double calculateTotalCost(Projet project) {
         double TotalCost=0.0;
         double ComponentTotalCost=0.0;
 
 
         for (Composants component: project.getComposants()){
             if (component instanceof Materiau){
-                ComponentTotalCost += materialService.calculateCost((Material) component);
+                 ComponentTotalCost += materiauService.calculateCost((Materiau) component);
             }else {
-                ComponentTotalCost+= LaborService.calculateCost((Labor) component);
+                ComponentTotalCost+= mainOeuvreService.calculateCost((MainOeuvre) component);
             }
         }
 
@@ -58,7 +65,7 @@ public class ProjetService {
         TotalCost=ComponentTotalCost+CoutMarge;
 
         return TotalCost;
-    }*/
+    }
 
 
 }
