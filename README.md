@@ -1,8 +1,8 @@
-Bati-Cuisine
-Description
+## Bati-Cuisine
+### Description
 Bati-Cuisine est une application Java destinée aux professionnels de la construction et de la rénovation de cuisines. Elle permet de calculer le coût total des travaux en prenant en compte les matériaux et les coûts de main-d'œuvre. L'application offre également des fonctionnalités avancées telles que la gestion des clients, la génération de devis personnalisés et une vue d'ensemble des aspects financiers et logistiques des projets de rénovation.
 
-Fonctionnalités
+### Fonctionnalités
 Gestion de projet : Suivi des projets de rénovation.
 Gestion des composants : Ajout et gestion des matériaux et de la main-d'œuvre.
 Gestion des clients : Base de données des clients avec la possibilité de les ajouter, modifier ou supprimer.
@@ -12,16 +12,14 @@ Affichage détaillé des résultats : Résumé détaillé des coûts et du proje
 Captures d'écran
 (Ajouter ici des captures d'écran de l'interface utilisateur pour illustrer l'application)
 
-Prérequis techniques
+### Prérequis techniques
 Java 8 ou version supérieure
 PostgreSQL pour la gestion de la base de données
 Git pour le contrôle de version
 JIRA pour la gestion de projet (optionnel)
 Installation
 Clonez le dépôt Git :
-bash
-Copy code
-git clone https://github.com/votre-utilisateur/bati-cuisine.git
+git clone https://github.com/allaouijihad/bati-cuisine.git
 Assurez-vous que Java et PostgreSQL sont installés sur votre système.
 Configurez la base de données PostgreSQL :
 Créez une base de données nommée bati_cuisine.
