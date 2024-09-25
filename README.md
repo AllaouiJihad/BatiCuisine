@@ -17,19 +17,16 @@ Bati-Cuisine est une application Java destinée aux professionnels de la constru
 - Calcul des coûts : Calcul automatique des coûts totaux (matériaux + main-d'œuvre)
 - Affichage détaillé des résultats : Résumé détaillé des coûts et des informations sur le projet
 
-## Captures d'écran
-
-(Ajouter ici des captures d'écran de l'interface utilisateur pour illustrer l'application)
 
 ## Prérequis techniques
 
 - Java 8 ou version supérieure
 - PostgreSQL pour la gestion de la base de données
 - Git pour le contrôle de version
-- JIRA pour la gestion de projet (optionnel)
+- JIRA pour la gestion de projet 
 
 ## Installation
 
 1. Cloner le dépôt Git :
    ```bash
-   git clone https://github.com/votre-utilisateur/bati-cuisine.git
+   git clone https://github.com/allaouijihad/bati-cuisine.git
